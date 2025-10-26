@@ -529,6 +529,12 @@ pub struct ImageUrlType {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+pub struct VideoUrlType {
+    /// video  URL 
+    pub url: String,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub struct PredictedOutput {
     /// The type of the predicted content you want to provide.
     pub r#type: PredictedOutputType,
@@ -587,6 +593,7 @@ pub enum ChatMessageContentPart {
     Text(ChatMessageTextContentPart),
     Image(ChatMessageImageContentPart),
     Audio(ChatMessageAudioContentPart),
+    Video(ChatMessageVideoContentPart),
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
@@ -611,6 +618,14 @@ pub struct ChatMessageAudioContentPart {
     pub r#type: String,
     /// The input audio data.
     pub input_audio: InputAudioData,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+pub struct ChatMessageVideoContentPart {
+    /// The type of the content part.
+    pub r#type: String,
+    /// The text content.
+    pub video_url: VideoUrlType,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
