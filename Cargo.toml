@@ -18,5 +18,5 @@ members = [
     "examples/vector_stores",
     "examples/deepseek/*", "examples/videos",
 ]
-default-members = ["openai_dive"]
+default-members = ["aha_openai_dive"]
 resolver = "2"
