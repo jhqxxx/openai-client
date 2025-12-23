@@ -1,4 +1,5 @@
 use super::shared::{ReasoningEffort, WebSearchContextSize};
+use crate::v1::resources::image::ImageData;
 use crate::v1::resources::shared::StopToken;
 use crate::v1::resources::shared::{FinishReason, Usage};
 use derive_builder::Builder;
@@ -609,7 +610,7 @@ pub struct ChatMessageImageContentPart {
     /// The type of the content part.
     pub r#type: String,
     /// The text content.
-    pub image_url: ImageUrlType,
+    pub image: ImageData
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
