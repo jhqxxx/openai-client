@@ -240,7 +240,7 @@ pub struct ChatCompletionTool {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[serde(tag = "role", rename_all = "lowercase")]
+#[serde(tag = "role", rename_all = "snake_case")]
 pub enum ChatMessage {
     Developer {
         /// The contents of the developer message.
@@ -341,7 +341,7 @@ impl ChatMessage {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[serde(tag = "role", rename_all = "lowercase")]
+#[serde(tag = "role", rename_all = "snake_case")]
 pub enum DeltaChatMessage {
     Developer {
         /// The contents of the developer message.
@@ -560,20 +560,20 @@ pub struct PredictedOutputArrayPart {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "snake_case")]
 pub enum PredictedOutputType {
     Content,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "snake_case")]
 pub enum Modality {
     Text,
     Audio,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "snake_case")]
 pub enum ImageUrlDetail {
     Auto,
     High,
@@ -610,7 +610,10 @@ pub struct ChatMessageImageContentPart {
     /// The type of the content part.
     pub r#type: String,
     /// The text content.
-    pub image: ImageData
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub image_url: Option<ImageUrlType>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub image_data: Option<ImageData>
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
@@ -678,13 +681,13 @@ impl Display for ChatMessageContent {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "snake_case")]
 pub enum ChatCompletionToolType {
     Function,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "snake_case")]
 pub enum ChatCompletionToolChoice {
     None,
     Auto,
@@ -702,13 +705,13 @@ pub struct WebSearchUserLocation {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "snake_case")]
 pub enum UserLocationType {
     Approximate,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "snake_case")]
 pub enum Voice {
     Alloy,
     Ash,
@@ -721,7 +724,7 @@ pub enum Voice {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "snake_case")]
 pub enum AudioFormat {
     Wav,
     Mp3,

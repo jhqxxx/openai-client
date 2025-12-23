@@ -80,7 +80,7 @@ pub enum ReasoningContent {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "snake_case")]
 pub enum InputItemStatus {
     InProgress,
     Completed,
@@ -266,6 +266,33 @@ pub struct ComputerToolCall {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+pub struct ComputerToolCallOutput {
+    pub id: String,
+    pub call_id: String,
+    pub output: ComputerToolCallOutputOutput,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub acknowledged_safety_checks: Option<Vec<AcknowledgedSafetyCheck>>,
+    pub status: InputItemStatus,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+pub struct AcknowledgedSafetyCheck {
+    pub id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub code: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub message: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+pub struct ComputerToolCallOutputOutput {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub file_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub image_url: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 #[serde(tag = "type")]
 pub enum ComputerAction {
     #[serde(rename = "click")]
@@ -294,7 +321,7 @@ pub enum ComputerAction {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "snake_case")]
 pub enum MouseButton {
     Left,
     Right,
