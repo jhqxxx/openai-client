@@ -1,22 +1,6 @@
 [workspace]
 members = [
     "openai_dive",
-    "examples/administration/*",
-    "examples/audio/*",
-    "examples/batches",
-    "examples/chat/*",
-    "examples/responses/*",
-    "examples/embeddings",
-    "examples/files",
-    "examples/fine_tuning",
-    "examples/images/*",
-    "examples/models",
-    "examples/moderations/*",
-    "examples/uploads",
-    "examples/realtime",
-    "examples/usage",
-    "examples/vector_stores",
-    "examples/deepseek/*", "examples/videos",
 ]
 default-members = ["openai_dive"]
 resolver = "2"

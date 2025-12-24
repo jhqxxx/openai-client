@@ -630,7 +630,7 @@ pub struct ChatMessageAudioContentPart {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub audio_url: Option<AudioUrlType>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub audio_data: InputAudioData,
+    pub audio_data: Option<InputAudioData>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
