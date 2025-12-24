@@ -530,6 +530,12 @@ pub struct ImageUrlType {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+pub struct AudioUrlType {
+    /// audio  URL 
+    pub url: String,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub struct VideoUrlType {
     /// video  URL 
     pub url: String,
@@ -621,7 +627,10 @@ pub struct ChatMessageAudioContentPart {
     /// The type of the content part. Always input_audio.
     pub r#type: String,
     /// The input audio data.
-    pub input_audio: InputAudioData,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub audio_url: Option<AudioUrlType>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub audio_data: InputAudioData,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
