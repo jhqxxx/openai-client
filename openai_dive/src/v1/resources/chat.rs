@@ -595,7 +595,7 @@ pub enum ChatMessageContent {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[serde(untagged)]
+#[serde(tag = "type", rename_all = "lowercase")]
 pub enum ChatMessageContentPart {
     Text(ChatMessageTextContentPart),
     Image(ChatMessageImageContentPart),
